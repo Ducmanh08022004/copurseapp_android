@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/questionContentTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Câu hỏi 1: Nội dung câu hỏi ở đây?"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <RadioGroup
+        android:id="@+id/answersRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <RadioButton
+            android:id="@+id/answerA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đáp án A"/>
+        <RadioButton
+            android:id="@+id/answerB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đáp án B"/>
+        <RadioButton
+            android:id="@+id/answerC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đáp án C"/>
+        <RadioButton
+            android:id="@+id/answerD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đáp án D"/>
+    </RadioGroup>
+
+</LinearLayout>

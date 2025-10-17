@@ -1,0 +1,79 @@
+package com.example.courseapp.Activity;
+
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.courseapp.Adapter.CoursesAdapter;
+import com.example.courseapp.api.ApiService;
+import com.example.courseapp.R;
+import com.example.courseapp.api.RetrofitClient;
+import com.example.courseapp.model.Course;
+import android.content.Intent;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class CoursesFragment extends Fragment {
+
+    RecyclerView coursesRecyclerView;
+    CoursesAdapter adapter;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_courses, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        coursesRecyclerView = view.findViewById(R.id.coursesRecyclerView);
+        coursesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Gọi hàm để lấy dữ liệu
+        fetchCourses();
+    }
+
+    private void fetchCourses() {
+        ApiService apiService = RetrofitClient.getApiService();
+        apiService.getAllCourses().enqueue(new Callback<List<Course>>() {
+            @Override
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                Log.d("API_RESPONSE", "onResponse: " + response.body());
+                Log.d("API_RESPONSE", "onResponse: " + response.isSuccessful());
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Course> courseList = response.body();
+                    adapter = new CoursesAdapter(getContext(), courseList, course -> {
+                        // Xử lý khi click vào một khóa học
+                        // Chuyển sang CourseDetailActivity và gửi theo ID của khóa học
+                        Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
+                        intent.putExtra("COURSE_ID", course.getId());
+                        startActivity(intent);
+                    });
+                    coursesRecyclerView.setAdapter(adapter);
+                } else {
+                    Toast.makeText(getContext(), "Lấy dữ liệu thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                Toast.makeText(getContext(), "Lỗi mạng: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("API_ERROR", "onFailure: ", t);
+            }
+        });
+    }
+}

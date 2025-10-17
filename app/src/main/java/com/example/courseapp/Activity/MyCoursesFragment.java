@@ -1,0 +1,108 @@
+package com.example.courseapp.Activity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.courseapp.Adapter.MyCoursesAdapter;
+import com.example.courseapp.R;
+import com.example.courseapp.api.ApiService;
+import com.example.courseapp.api.RetrofitClient;
+import com.example.courseapp.model.Order;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MyCoursesFragment extends Fragment {
+
+    private RecyclerView myCoursesRecyclerView;
+    private MyCoursesAdapter adapter;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_my_courses, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        myCoursesRecyclerView = view.findViewById(R.id.myCoursesRecyclerView);
+        myCoursesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        fetchMyPaidCourses();
+    }
+
+    private void fetchMyPaidCourses() {
+
+        if (getActivity() == null) {
+            return;
+        }
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE);
+        String token = prefs.getString("USER_TOKEN", null);
+
+        if (token == null) {
+            Toast.makeText(getContext(), "Vui lòng đăng nhập lại", Toast.LENGTH_SHORT).show();
+            // Optional: Redirect to LoginActivity
+            return;
+        }
+
+        String authToken = "Bearer " + token;
+        ApiService apiService = RetrofitClient.getApiService();
+
+        // Call the new API endpoint to get paid courses
+        apiService.getMyPaidCourses(authToken).enqueue(new Callback<List<Order>>() {
+            @Override
+            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // SỬA LẠI: Initialize adapter with the click listener
+                    adapter = new MyCoursesAdapter(getContext(), response.body(), order -> {
+                        // Handle the click event here
+                        if (order.getCourse() != null) {
+                            // Create an Intent to open CourseDetailActivity
+                            Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
+                            // Pass the courseId to the detail activity
+                            intent.putExtra("COURSE_ID", order.getCourse().getId());
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getContext(), "Lỗi: Không có thông tin khóa học.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    // Set the adapter to the RecyclerView
+                    myCoursesRecyclerView.setAdapter(adapter);
+
+                } else {
+                    Toast.makeText(getContext(), "Không tải được danh sách khóa học đã mua", Toast.LENGTH_SHORT).show();
+                    Log.e("MyCourses", "API Error: " + response.code() + " " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Order>> call, Throwable t) {
+                Toast.makeText(getContext(), "Lỗi mạng: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("MyCourses", "API Failure: ", t);
+            }
+        });
+    }
+}
+

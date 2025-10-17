@@ -1,0 +1,28 @@
+# Android Studio
+*.iml
+.idea/
+.gradle/
+build/
+captures/
+local.properties
+.DS_Store
+
+# Keystore (đừng bao giờ push file này)
+*.jks
+*.keystore
+
+# Tài khoản / API key
+app/google-services.json
+app/src/main/res/values/secrets.xml
+
+# NDK & Generated files
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+
+# Misc
+*.log
