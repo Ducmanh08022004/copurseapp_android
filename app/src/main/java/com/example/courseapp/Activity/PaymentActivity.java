@@ -10,12 +10,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.courseapp.R;
-import com.example.courseapp.api.ApiService;
 import com.example.courseapp.api.RetrofitClient;
 import com.example.courseapp.model.request.CreatePaymentRequest;
 import com.example.courseapp.model.response.PaymentResponse;
 
-// THÊM CÁC IMPORT NÀY
+
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -46,7 +45,7 @@ public class PaymentActivity extends AppCompatActivity {
         if (token != null) {
             authToken = "Bearer " + token;
         } else {
-            // Nếu không có token, không thể thanh toán -> quay về login
+            // Nếu không có token -> quay về login
             Toast.makeText(this, "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại.", Toast.LENGTH_LONG).show();
             Intent loginIntent = new Intent(this, LoginActivity.class);
             loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -58,7 +57,7 @@ public class PaymentActivity extends AppCompatActivity {
         // Lấy dữ liệu từ Intent
         orderId = getIntent().getIntExtra("ORDER_ID", -1);
 
-        // NHẬN DỮ LIỆU AMOUNT DƯỚI DẠNG BigDecimal
+        // Ép biến AMOUNT có kiểu BigDecimal
         BigDecimal amount = null;
         try {
             // Lấy đối tượng Serializable và ép kiểu về BigDecimal
@@ -77,7 +76,7 @@ public class PaymentActivity extends AppCompatActivity {
         // Hiển thị thông tin
         orderIdTextView.setText(String.format("Mã đơn hàng: #%d", orderId));
 
-        // ĐỊNH DẠNG SỐ TIỀN THEO KIỂU VNĐ
+        // Định dạng kiểu VNĐ
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(localeVN);
         amountTextView.setText(currencyFormatter.format(amount)); // Định dạng BigDecimal
@@ -87,7 +86,7 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void handlePayment() {
-        // Vô hiệu hóa nút để tránh nhấn nhiều lần
+        // Vô hiệu hóa nút để tránh nhấn nhiều lần (Sau khi nhấn lần đầu thì sẽ không nhấn được nữa)
         confirmPaymentButton.setEnabled(false);
         confirmPaymentButton.setText("Đang xử lý...");
 

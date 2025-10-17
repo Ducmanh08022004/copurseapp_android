@@ -52,7 +52,6 @@ public class EditProfileActivity extends AppCompatActivity {
             finish();
             return;
         }
-
         saveButton.setOnClickListener(v -> handleSaveChanges());
     }
 

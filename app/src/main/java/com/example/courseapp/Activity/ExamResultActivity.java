@@ -31,7 +31,7 @@ public class ExamResultActivity extends AppCompatActivity {
 
         // Nút quay lại
         backToCourseButton.setOnClickListener(v -> {
-            // Đóng Activity này và quay lại màn hình trước đó (CourseDetailActivity)
+            // Quay lại màn hình trước đó (CourseDetailActivity)
             finish();
         });
     }

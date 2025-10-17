@@ -57,7 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Đăng ký thành công! Vui lòng đăng nhập.", Toast.LENGTH_LONG).show();
                     finish(); // Quay lại màn hình đăng nhập
                 } else {
-                    // Có thể phân tích lỗi chi tiết hơn từ response.errorBody()
                     Toast.makeText(RegisterActivity.this, "Email hoặc username đã tồn tại", Toast.LENGTH_SHORT).show();
                 }
             }

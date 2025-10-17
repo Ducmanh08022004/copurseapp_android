@@ -1,6 +1,5 @@
 package com.example.courseapp.Activity;
 
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,7 +56,6 @@ public class CoursesFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Course> courseList = response.body();
                     adapter = new CoursesAdapter(getContext(), courseList, course -> {
-                        // Xử lý khi click vào một khóa học
                         // Chuyển sang CourseDetailActivity và gửi theo ID của khóa học
                         Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
                         intent.putExtra("COURSE_ID", course.getId());

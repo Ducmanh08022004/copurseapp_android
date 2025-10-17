@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.courseapp.R;
-import com.example.courseapp.model.Video; // Bạn cần tạo lớp model Video.java
+import com.example.courseapp.model.Video;
 import java.util.List;
 
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewHolder> {
@@ -58,7 +58,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 
         public void bind(final Video video, final OnItemClickListener listener) {
             videoTitleTextView.setText(video.getTitle());
-            videoDurationTextView.setText(video.getDuration()); // Giả sử duration là String "HH:mm:ss"
+            videoDurationTextView.setText(video.getDuration());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(v -> handleLogin());
 
         registerPromptText.setOnClickListener(v -> {
-            // Chuyển sang RegisterActivity bằng Intent
+            // Chuyển sang RegisterActivity
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });

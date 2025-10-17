@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.courseapp.R;
-import com.example.courseapp.model.Course; // Bạn cần tạo lớp model Course.java
+import com.example.courseapp.model.Course;
 import java.util.List;
 
 
@@ -69,8 +69,6 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
             courseTitleTextView.setText(course.getTitle());
             courseDescriptionTextView.setText(course.getDescription());
 
-            // Dùng thư viện Glide hoặc Picasso để tải ảnh từ URL
-            // Glide.with(itemView.getContext()).load(course.getImageUrl()).into(courseImageView);
 
             // Gán sự kiện click cho toàn bộ item view
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.courseapp.Adapter.ExamsAdapter;
 import com.example.courseapp.Adapter.VideosAdapter;
 import com.example.courseapp.R;
-import com.example.courseapp.api.ApiService;
 import com.example.courseapp.api.RetrofitClient;
 import com.example.courseapp.model.Course;
 import com.example.courseapp.model.request.CreateOrderRequest;

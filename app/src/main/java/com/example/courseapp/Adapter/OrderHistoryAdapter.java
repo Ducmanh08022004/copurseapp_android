@@ -68,7 +68,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         private String formatDate(String isoDate) {
             if (isoDate == null) return "Không rõ ngày";
             try {
-                // Định dạng này khớp với `createdAt` của Sequelize
+
                 SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
                 SimpleDateFormat targetFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
                 Date date = isoFormat.parse(isoDate);

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        // Tải Fragment mặc định (Khám phá) khi Activity được tạo lần đầu
+        // Tải Fragment mặc định khi Activity được tạo lần đầu
         if (savedInstanceState == null) {
             loadFragment(new CoursesFragment());
         }

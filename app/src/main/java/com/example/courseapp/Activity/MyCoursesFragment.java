@@ -36,7 +36,7 @@ public class MyCoursesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Nạp layout cho fragment này
         return inflater.inflate(R.layout.fragment_my_courses, container, false);
     }
 
@@ -69,18 +69,17 @@ public class MyCoursesFragment extends Fragment {
         String authToken = "Bearer " + token;
         ApiService apiService = RetrofitClient.getApiService();
 
-        // Call the new API endpoint to get paid courses
+        // Gọi API để thanh toán
         apiService.getMyPaidCourses(authToken).enqueue(new Callback<List<Order>>() {
             @Override
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // SỬA LẠI: Initialize adapter with the click listener
+                    // Tạo adapter và gán nó cho RecyclerView
                     adapter = new MyCoursesAdapter(getContext(), response.body(), order -> {
-                        // Handle the click event here
                         if (order.getCourse() != null) {
-                            // Create an Intent to open CourseDetailActivity
+                            // chuyển đến CourseDetailActivity
                             Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
-                            // Pass the courseId to the detail activity
+                            // Gửi courseId vào Intent
                             intent.putExtra("COURSE_ID", order.getCourse().getId());
                             startActivity(intent);
                         } else {
@@ -88,7 +87,7 @@ public class MyCoursesFragment extends Fragment {
                         }
                     });
 
-                    // Set the adapter to the RecyclerView
+                    // Set adapter cho RecyclerView
                     myCoursesRecyclerView.setAdapter(adapter);
 
                 } else {

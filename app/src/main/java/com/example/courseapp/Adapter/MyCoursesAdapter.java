@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-// import com.bumptech.glide.Glide;
 import com.example.courseapp.R;
 import com.example.courseapp.model.Order;
 import java.util.List;
@@ -17,14 +16,13 @@ public class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.MyCo
 
     private Context context;
     private List<Order> orderList;
-    private OnItemClickListener listener; // THÊM MỚI: Interface listener
+    private OnItemClickListener listener;
 
-    // THÊM MỚI: Interface để xử lý sự kiện click
+    //Interface để xử lý sự kiện click
     public interface OnItemClickListener {
         void onItemClick(Order order);
     }
 
-    // SỬA LẠI: Thêm listener vào constructor
     public MyCoursesAdapter(Context context, List<Order> orderList, OnItemClickListener listener) {
         this.context = context;
         this.orderList = orderList;
@@ -65,7 +63,7 @@ public class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.MyCo
                 myCourseTitleTextView.setText(order.getCourse().getTitle());
             }
 
-            // THÊM MỚI: Gán sự kiện click cho toàn bộ item
+            // Gán sự kiện click cho toàn bộ item
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemClick(order);

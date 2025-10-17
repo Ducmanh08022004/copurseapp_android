@@ -33,7 +33,7 @@ public class TakeExamActivity extends AppCompatActivity {
 
     private int examId;
     private String authToken, titleExam;
-    private QuestionsAdapter adapter; // Giữ tham chiếu đến adapter
+    private QuestionsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class TakeExamActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Question> questions = response.body();
 
-                    // Khởi tạo adapter (sử dụng constructor 2 tham số)
+                    // Khởi tạo adapter với danh sách câu hỏi
                     adapter = new QuestionsAdapter(TakeExamActivity.this, questions);
 
                     // Gắn adapter cho RecyclerView
@@ -119,7 +119,7 @@ public class TakeExamActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     UserExam result = response.body();
 
-                    // 4. Chuyển sang màn hình ExamResultActivity và gửi kết quả
+                    //  Hiển thị kết quả và Chuyển sang màn hình ExamResultActivity và gửi kết quả
                     Intent intent = new Intent(TakeExamActivity.this, ExamResultActivity.class);
                     intent.putExtra("SCORE", result.getScore());
                     intent.putExtra("TOTAL_QUESTIONS", result.getTotalQuestions());
@@ -128,14 +128,12 @@ public class TakeExamActivity extends AppCompatActivity {
                     finish(); // Kết thúc màn hình làm bài, không cho quay lại
                 } else {
                     Toast.makeText(TakeExamActivity.this, "Lỗi khi nộp bài", Toast.LENGTH_SHORT).show();
-                    Log.e("SUBMIT_EXAM", "onResponse: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<UserExam> call, Throwable t) {
                 Toast.makeText(TakeExamActivity.this, "Lỗi mạng: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("SUBMIT_EXAM", "onFailure: ", t);
             }
         });
     }
