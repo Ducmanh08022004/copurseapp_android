@@ -1,24 +1,27 @@
 package com.example.courseapp.Adapter;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.courseapp.R;
 import com.example.courseapp.model.Course;
-import java.util.List;
 
+import java.util.List;
 
 public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseViewHolder> {
 
-    private Context context;
-    private List<Course> courseList;
-    private OnItemClickListener listener;
+    private final Context context;
+    private final List<Course> courseList;
+    private final OnItemClickListener listener;
 
     // Interface để xử lý sự kiện click
     public interface OnItemClickListener {
@@ -34,25 +37,22 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
     @NonNull
     @Override
     public CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Tạo view cho mỗi item từ file XML
         View view = LayoutInflater.from(context).inflate(R.layout.item_course, parent, false);
         return new CourseViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
-        // Lấy dữ liệu từ danh sách và gán vào các view
         Course course = courseList.get(position);
-        holder.bind(course, listener);
+        holder.bind(context, course, listener);
     }
 
     @Override
     public int getItemCount() {
-        // Trả về số lượng item trong danh sách
         return courseList.size();
     }
 
-    // Lớp ViewHolder chứa các thành phần UI của một item
+    // ViewHolder
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
         ImageView courseImageView;
         TextView courseTitleTextView;
@@ -65,18 +65,20 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
             courseDescriptionTextView = itemView.findViewById(R.id.courseDescriptionTextView);
         }
 
-        public void bind(final Course course, final OnItemClickListener listener) {
+        public void bind(Context context, final Course course, final OnItemClickListener listener) {
             courseTitleTextView.setText(course.getTitle());
             courseDescriptionTextView.setText(course.getDescription());
 
+            // Load ảnh bằng Glide
+            Glide.with(context)
+                    .load(course.getImageUrl()) // lấy link ảnh từ Course
+                    .placeholder(R.drawable.loading) // ảnh hiển thị trong khi chờ
+                    .error(R.drawable.error)         // ảnh nếu load lỗi
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(courseImageView);
 
-            // Gán sự kiện click cho toàn bộ item view
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClick(course);
-                }
-            });
+            // Gán sự kiện click
+            itemView.setOnClickListener(v -> listener.onItemClick(course));
         }
     }
 }

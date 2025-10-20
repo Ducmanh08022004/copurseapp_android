@@ -9,7 +9,7 @@ public class Course {
     private int courseId;
     private String title;
     private String description;
-
+    private String imageUrl;
     private BigDecimal price;
 
     public int getId() {
@@ -42,5 +42,21 @@ public class Course {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

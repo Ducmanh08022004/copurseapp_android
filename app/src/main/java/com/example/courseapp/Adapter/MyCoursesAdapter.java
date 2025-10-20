@@ -6,19 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.courseapp.R;
 import com.example.courseapp.model.Order;
+
 import java.util.List;
 
 public class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.MyCourseViewHolder> {
 
-    private Context context;
-    private List<Order> orderList;
-    private OnItemClickListener listener;
+    private final Context context;
+    private final List<Order> orderList;
+    private final OnItemClickListener listener;
 
-    //Interface để xử lý sự kiện click
+    // Interface để xử lý sự kiện click
     public interface OnItemClickListener {
         void onItemClick(Order order);
     }
@@ -39,8 +44,7 @@ public class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.MyCo
     @Override
     public void onBindViewHolder(@NonNull MyCourseViewHolder holder, int position) {
         Order order = orderList.get(position);
-        // Truyền listener vào hàm bind
-        holder.bind(order, listener);
+        holder.bind(context, order, listener);
     }
 
     @Override
@@ -58,12 +62,20 @@ public class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.MyCo
             myCourseTitleTextView = itemView.findViewById(R.id.myCourseTitleTextView);
         }
 
-        public void bind(final Order order, final OnItemClickListener listener) {
+        public void bind(Context context, final Order order, final OnItemClickListener listener) {
             if (order != null && order.getCourse() != null) {
                 myCourseTitleTextView.setText(order.getCourse().getTitle());
+
+                // 🖼️ Load ảnh bằng Glide
+                Glide.with(context)
+                        .load(order.getCourse().getImageUrl()) // URL ảnh của khóa học
+                        .placeholder(R.drawable.loading)       // ảnh tạm khi đang tải
+                        .error(R.drawable.error)               // ảnh hiển thị khi lỗi
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(myCourseImageView);
             }
 
-            // Gán sự kiện click cho toàn bộ item
+            // Gán sự kiện click
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemClick(order);
@@ -72,4 +84,3 @@ public class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.MyCo
         }
     }
 }
-
