@@ -68,10 +68,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
         public void bind(Context context, final Course course, final OnItemClickListener listener) {
             courseTitleTextView.setText(course.getTitle());
             courseDescriptionTextView.setText(course.getDescription());
-
+            String img="http://10.0.2.2:5000";
             // Load ảnh bằng Glide
             Glide.with(context)
-                    .load(course.getImageUrl()) // lấy link ảnh từ Course
+                    .load(img+course.getImageUrl()) // lấy link ảnh từ Course
                     .placeholder(R.drawable.loading) // ảnh hiển thị trong khi chờ
                     .error(R.drawable.error)         // ảnh nếu load lỗi
                     .diskCacheStrategy(DiskCacheStrategy.ALL)

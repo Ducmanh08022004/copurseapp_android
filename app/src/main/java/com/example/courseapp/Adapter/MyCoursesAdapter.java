@@ -1,6 +1,7 @@
 package com.example.courseapp.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,10 +66,11 @@ public class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.MyCo
         public void bind(Context context, final Order order, final OnItemClickListener listener) {
             if (order != null && order.getCourse() != null) {
                 myCourseTitleTextView.setText(order.getCourse().getTitle());
+                String img="http://10.0.2.2:5000";
 
-                // 🖼️ Load ảnh bằng Glide
+                // Load ảnh bằng Glide
                 Glide.with(context)
-                        .load(order.getCourse().getImageUrl()) // URL ảnh của khóa học
+                        .load(img+order.getCourse().getImageUrl()) // URL ảnh của khóa học
                         .placeholder(R.drawable.loading)       // ảnh tạm khi đang tải
                         .error(R.drawable.error)               // ảnh hiển thị khi lỗi
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
