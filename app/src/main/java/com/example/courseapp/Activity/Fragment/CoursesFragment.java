@@ -1,7 +1,6 @@
 package com.example.courseapp.Activity.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +70,6 @@ public class CoursesFragment extends Fragment {
         apiService.getAllCourses().enqueue(new Callback<List<Course>>() {
             @Override
             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
-                Log.d("API_RESPONSE", "onResponse: " + response.body());
                 if (response.isSuccessful() && response.body() != null) {
                     fullCourseList = response.body();
                     adapter = new CoursesAdapter(getContext(), fullCourseList, course -> {
@@ -88,7 +86,6 @@ public class CoursesFragment extends Fragment {
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
                 Toast.makeText(getContext(), "Lỗi mạng: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("API_ERROR", "onFailure: ", t);
             }
         });
     }

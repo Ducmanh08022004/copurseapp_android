@@ -1,6 +1,8 @@
 package com.example.courseapp.model;
 
 
+import com.google.gson.annotations.SerializedName;
+
 public class UserExam {
     private int id;
     private int userId;
@@ -8,8 +10,19 @@ public class UserExam {
     private int score;
     private int totalQuestions;
     private double percent;
+    @SerializedName("Exam")
+    private Exam exam;
 
     // Getters and Setters
+
+    public Exam getExam() {
+        return exam;
+    }
+
+    public void setExam(Exam exam) {
+        this.exam = exam;
+    }
+
     public int getId() {
         return id;
     }

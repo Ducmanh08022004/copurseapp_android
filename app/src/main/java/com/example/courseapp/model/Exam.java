@@ -1,6 +1,8 @@
 package com.example.courseapp.model;
 
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Exam {
@@ -10,8 +12,19 @@ public class Exam {
     private Date createAt;
     private Date updateAt;
     private int courseId;
+    @SerializedName("Course")
+    private Course course;
 
     // Getters and Setters
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public int getExamId() {
         return examId;
     }

@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.courseapp.Activity.Fragment.CoursesFragment;
+import com.example.courseapp.Activity.Fragment.ExamResultsFragment;
 import com.example.courseapp.Activity.Fragment.MyCoursesFragment;
 import com.example.courseapp.Activity.Fragment.ProfileFragment;
 import com.example.courseapp.R;
@@ -31,8 +32,12 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new CoursesFragment();
             } else if (itemId == R.id.nav_my_courses) {
                 // Fragment để xem các khóa học đã đăng ký và tiến trình
-                selectedFragment = new MyCoursesFragment(); // Chúng ta sẽ tạo Fragment này
-            } else if (itemId == R.id.nav_profile) {
+                selectedFragment = new MyCoursesFragment();
+            } else if (itemId == R.id.nav_results)
+            {
+                selectedFragment = new ExamResultsFragment();
+            }
+            else if (itemId == R.id.nav_profile) {
                 // Fragment để xem profile và đăng xuất
                 selectedFragment = new ProfileFragment();
             }

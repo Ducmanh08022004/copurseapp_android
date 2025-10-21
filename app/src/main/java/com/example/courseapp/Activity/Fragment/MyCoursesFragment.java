@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +62,6 @@ public class MyCoursesFragment extends Fragment {
 
         if (token == null) {
             Toast.makeText(getContext(), "Vui lòng đăng nhập lại", Toast.LENGTH_SHORT).show();
-            // Optional: Redirect to LoginActivity
             return;
         }
 
@@ -93,14 +91,12 @@ public class MyCoursesFragment extends Fragment {
 
                 } else {
                     Toast.makeText(getContext(), "Không tải được danh sách khóa học đã mua", Toast.LENGTH_SHORT).show();
-                    Log.e("MyCourses", "API Error: " + response.code() + " " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Order>> call, Throwable t) {
                 Toast.makeText(getContext(), "Lỗi mạng: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("MyCourses", "API Failure: ", t);
             }
         });
     }
