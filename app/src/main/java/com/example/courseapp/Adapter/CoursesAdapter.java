@@ -20,7 +20,7 @@ import java.util.List;
 public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseViewHolder> {
 
     private final Context context;
-    private final List<Course> courseList;
+    private List<Course> courseList;
     private final OnItemClickListener listener;
 
     // Interface để xử lý sự kiện click
@@ -49,7 +49,12 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
 
     @Override
     public int getItemCount() {
-        return courseList.size();
+        return courseList != null ? courseList.size() : 0;
+    }
+
+    public void updateList(List<Course> newList) {
+        this.courseList = newList;
+        notifyDataSetChanged();
     }
 
     // ViewHolder
@@ -68,16 +73,15 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
         public void bind(Context context, final Course course, final OnItemClickListener listener) {
             courseTitleTextView.setText(course.getTitle());
             courseDescriptionTextView.setText(course.getDescription());
-            String img="http://10.0.2.2:5000";
-            // Load ảnh bằng Glide
+
+            String img = "http://10.0.2.2:5000";
             Glide.with(context)
-                    .load(img+course.getImageUrl()) // lấy link ảnh từ Course
-                    .placeholder(R.drawable.loading) // ảnh hiển thị trong khi chờ
-                    .error(R.drawable.error)         // ảnh nếu load lỗi
+                    .load(img + course.getImageUrl())
+                    .placeholder(R.drawable.loading)
+                    .error(R.drawable.error)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(courseImageView);
 
-            // Gán sự kiện click
             itemView.setOnClickListener(v -> listener.onItemClick(course));
         }
     }

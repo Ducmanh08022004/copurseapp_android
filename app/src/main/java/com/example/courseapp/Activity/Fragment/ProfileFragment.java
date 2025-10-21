@@ -1,4 +1,4 @@
-package com.example.courseapp.Activity;
+package com.example.courseapp.Activity.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -17,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.courseapp.Activity.EditProfileActivity;
+import com.example.courseapp.Activity.LoginActivity;
+import com.example.courseapp.Activity.OrderHistoryActivity;
 import com.example.courseapp.R;
 import com.example.courseapp.api.ApiService;
 import com.example.courseapp.api.RetrofitClient;

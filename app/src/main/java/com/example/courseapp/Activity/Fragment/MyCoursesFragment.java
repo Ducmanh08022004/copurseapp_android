@@ -1,4 +1,4 @@
-package com.example.courseapp.Activity;
+package com.example.courseapp.Activity.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.courseapp.Activity.CourseDetailActivity;
 import com.example.courseapp.Adapter.MyCoursesAdapter;
 import com.example.courseapp.R;
 import com.example.courseapp.api.ApiService;

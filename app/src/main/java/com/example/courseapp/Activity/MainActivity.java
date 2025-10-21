@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.courseapp.Activity.Fragment.CoursesFragment;
+import com.example.courseapp.Activity.Fragment.MyCoursesFragment;
+import com.example.courseapp.Activity.Fragment.ProfileFragment;
 import com.example.courseapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

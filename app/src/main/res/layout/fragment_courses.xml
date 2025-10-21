@@ -12,6 +12,13 @@
         android:textStyle="bold"
         android:padding="16dp"/>
 
+    <!-- Ô tìm kiếm -->
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Tìm kiếm khóa học..." />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/coursesRecyclerView"
         android:layout_width="match_parent"

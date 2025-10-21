@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tiến trình học tập"
+        android:text="Khóa học của tôi"
         android:textSize="22sp"
         android:textStyle="bold"
         android:padding="16dp"/>
