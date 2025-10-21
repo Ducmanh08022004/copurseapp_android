@@ -32,7 +32,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
 
 
-            String computerIp = "192.168.0.102";
+            String computerIp = "10.0.2.2";
             String fullUrl = "http://" + computerIp + ":5000/" + videoUrl;
 
             MediaItem mediaItem = MediaItem.fromUri(Uri.parse(fullUrl));
