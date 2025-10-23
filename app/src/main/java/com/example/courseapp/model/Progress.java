@@ -1,83 +1,71 @@
 package com.example.courseapp.model;
 
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
-
 public class Progress {
-    @SerializedName("Course")
-    private Course course;
-    private int progressId;
-    private int percentage;
-    private Date creatAt;
-    private Date updateAt;
-    private int userId;
     private int courseId;
+    private String title;
+    private double videoPercent;
+    private double examPercent;
+    private double totalPercent;
+    private String imageUrl; // ✅ thêm trường ảnh bìa khóa học
 
+    public Progress() {}
 
-    public Progress(Course course, int progressId, int percentage, Date creatAt, Date updateAt, int userId, int courseId) {
-        this.course = course;
-        this.progressId = progressId;
-        this.percentage = percentage;
-        this.creatAt = creatAt;
-        this.updateAt = updateAt;
-        this.userId = userId;
+    // Constructor đầy đủ
+    public Progress(int courseId, String title, double videoPercent, double examPercent, double totalPercent, String imageUrl) {
         this.courseId = courseId;
+        this.title = title;
+        this.videoPercent = videoPercent;
+        this.examPercent = examPercent;
+        this.totalPercent = totalPercent;
+        this.imageUrl = imageUrl;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-    public int getProgressId() {
-        return progressId;
-    }
-
-    public void setProgressId(int progressId) {
-        this.progressId = progressId;
-    }
-
-    public int getPercentage() {
-        return percentage;
-    }
-
-    public void setPercentage(int percentage) {
-        this.percentage = percentage;
-    }
-
-    public Date getCreatAt() {
-        return creatAt;
-    }
-
-    public void setCreatAt(Date creatAt) {
-        this.creatAt = creatAt;
-    }
-
-    public Date getUpdateAt() {
-        return updateAt;
-    }
-
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
+    // Getter & Setter
     public int getCourseId() {
         return courseId;
     }
 
     public void setCourseId(int courseId) {
         this.courseId = courseId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getVideoPercent() {
+        return videoPercent;
+    }
+
+    public void setVideoPercent(double videoPercent) {
+        this.videoPercent = videoPercent;
+    }
+
+    public double getExamPercent() {
+        return examPercent;
+    }
+
+    public void setExamPercent(double examPercent) {
+        this.examPercent = examPercent;
+    }
+
+    public double getTotalPercent() {
+        return totalPercent;
+    }
+
+    public void setTotalPercent(double totalPercent) {
+        this.totalPercent = totalPercent;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -20,7 +20,7 @@ import com.example.courseapp.Adapter.MyCoursesAdapter;
 import com.example.courseapp.R;
 import com.example.courseapp.api.ApiService;
 import com.example.courseapp.api.RetrofitClient;
-import com.example.courseapp.model.Order;
+
 
 import java.util.List;
 
@@ -51,11 +51,9 @@ public class MyCoursesFragment extends Fragment {
         fetchMyPaidCourses();
     }
 
-    private void fetchMyPaidCourses() {
 
-        if (getActivity() == null) {
-            return;
-        }
+    private void fetchMyPaidCourses() {
+        if (getActivity() == null) return;
 
         SharedPreferences prefs = getActivity().getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE);
         String token = prefs.getString("USER_TOKEN", null);
@@ -68,34 +66,25 @@ public class MyCoursesFragment extends Fragment {
         String authToken = "Bearer " + token;
         ApiService apiService = RetrofitClient.getApiService();
 
-        // Gọi API để thanh toán
-        apiService.getMyPaidCourses(authToken).enqueue(new Callback<List<Order>>() {
+        // Lấy tiến độ học
+        apiService.getMyCourseProgress(authToken).enqueue(new Callback<List<com.example.courseapp.model.Progress>>() {
             @Override
-            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+            public void onResponse(Call<List<com.example.courseapp.model.Progress>> call, Response<List<com.example.courseapp.model.Progress>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Tạo adapter và gán nó cho RecyclerView
-                    adapter = new MyCoursesAdapter(getContext(), response.body(), order -> {
-                        if (order.getCourse() != null) {
-                            // chuyển đến CourseDetailActivity
-                            Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
-                            // Gửi courseId vào Intent
-                            intent.putExtra("COURSE_ID", order.getCourse().getId());
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(getContext(), "Lỗi: Không có thông tin khóa học.", Toast.LENGTH_SHORT).show();
-                        }
+                    adapter = new MyCoursesAdapter(getContext(), response.body(), progress -> {
+                        // Khi click vào khóa học → mở chi tiết
+                        Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
+                        intent.putExtra("COURSE_ID", progress.getCourseId());
+                        startActivity(intent);
                     });
-
-                    // Set adapter cho RecyclerView
                     myCoursesRecyclerView.setAdapter(adapter);
-
                 } else {
-                    Toast.makeText(getContext(), "Không tải được danh sách khóa học đã mua", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Không tải được tiến độ khóa học", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Order>> call, Throwable t) {
+            public void onFailure(Call<List<com.example.courseapp.model.Progress>> call, Throwable t) {
                 Toast.makeText(getContext(), "Lỗi mạng: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
