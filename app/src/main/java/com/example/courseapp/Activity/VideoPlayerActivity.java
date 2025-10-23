@@ -82,7 +82,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                     long duration = player.getDuration();
                     double percent = (position * 100.0 / duration);
 
-                    if (percent >= 10 && !progressUpdated) {
+                    if (percent >= 90 && !progressUpdated) {
                         progressUpdated = true;
                         markVideoAsCompleted();
                     }
