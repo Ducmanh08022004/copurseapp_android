@@ -215,6 +215,7 @@ public class CourseDetailActivity extends AppCompatActivity {
                     VideosAdapter adapter = new VideosAdapter(CourseDetailActivity.this, response.body(), video -> {
                         Intent intent = new Intent(CourseDetailActivity.this, VideoPlayerActivity.class);
                         intent.putExtra("VIDEO_URL", video.getUrl());
+                        intent.putExtra("VIDEO_ID", video.getId());
                         startActivity(intent);
                     });
                     videosRecyclerView.setAdapter(adapter);

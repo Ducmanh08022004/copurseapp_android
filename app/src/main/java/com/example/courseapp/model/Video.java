@@ -2,7 +2,7 @@ package com.example.courseapp.model;
 
 public class Video {
 
-    private int id;
+    private int videoId;
     private String title;
     private String duration; // Ví dụ: "10:35"
     private String url;      // URL để stream video
@@ -10,7 +10,7 @@ public class Video {
     private int courseId;
 
     public Video(int id, String title, String duration, String url, int courseId) {
-        this.id = id;
+        this.videoId = id;
         this.title = title;
         this.duration = duration;
         this.url = url;
@@ -18,11 +18,11 @@ public class Video {
     }
 
     public int getId() {
-        return id;
+        return videoId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.videoId = id;
     }
 
     public String getTitle() {

@@ -50,7 +50,11 @@ public interface ApiService {
     @GET("videos/course/{courseId}")
     Call<List<Video>> getVideosForCourse(@Header("Authorization") String authToken, @Path("courseId") int courseId);
 
-
+    @POST("videos/complete/{videoId}")
+    Call<ApiResponse> markVideoCompleted(
+            @Header("Authorization") String authToken,
+            @Path("videoId") int videoId
+    );
 
     // ================== Exams (exams.js & questions.js) ==================
     // Lấy danh sách bài thi của một khóa học
