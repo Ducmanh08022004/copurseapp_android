@@ -6,5 +6,5 @@
     <color name="colorPrimaryTheme">#e6007e</color>
     <color name="colorPrimaryTheme_10_alpha">#1AE6007E</color>
     <color name="colorOnPrimary_White">#FFFFFF</color>
-    <color name="colorImageScrim">#66000000</color>
+    <color name="colorImageScrim">#11000000</color>
 </resources>

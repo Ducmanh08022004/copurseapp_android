@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
 import com.example.courseapp.Adapter.ExamsAdapter;
 import com.example.courseapp.Adapter.VideosAdapter;
 import com.example.courseapp.R;
@@ -51,6 +52,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("");
         }
 
         detailCourseImageView = findViewById(R.id.detailCourseImageView);
@@ -172,6 +174,17 @@ public class CourseDetailActivity extends AppCompatActivity {
 
                     detailCourseTitleTextView.setText(currentCourse.getTitle());
                     detailCourseDescriptionTextView.setText(currentCourse.getDescription());
+                    String imageUrl = "http://10.0.2.2:5000" + currentCourse.getImageUrl(); // đổi tên field nếu khác
+                    Log.d("IMAGE_URL", "Image URL: " + imageUrl);
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        Glide.with(CourseDetailActivity.this)
+                                .load(imageUrl)
+                                .placeholder(R.drawable.placeholder_image) // ảnh tạm khi load
+                                .error(R.drawable.error)              // ảnh lỗi
+                                .into(detailCourseImageView);
+                    } else {
+                        detailCourseImageView.setImageResource(R.drawable.placeholder_image);
+                    }
                 } else {
                     Toast.makeText(CourseDetailActivity.this, "Không tìm thấy khóa học", Toast.LENGTH_SHORT).show();
                 }
