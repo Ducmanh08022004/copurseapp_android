@@ -6,21 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
 
-    <!-- FrameLayout này là "khung chứa" linh hoạt. -->
-    <!-- Các Fragment (CoursesFragment, ProfileFragment,...) sẽ được hiển thị ở đây. -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation" />
 
-    <!-- Thanh điều hướng ở dưới cùng của màn hình. -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:menu="@menu/bottom_navigation_menu"
+
+        app:itemIconTint="@color/bottom_nav_color_selector"
+        app:itemTextColor="@color/bottom_nav_color_selector" />
 
 </RelativeLayout>
