@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="24dp"
+    android:background="#FFFFFF"
     tools:context=".Activity.RegisterActivity">
 
     <TextView
@@ -12,12 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tạo tài khoản"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
+        android:textColor="#e6007e"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="48dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fullNameInputLayout"
@@ -28,7 +30,11 @@
         app:layout_constraintTop_toBottomOf="@id/registerTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="32dp"
+        app:boxStrokeColor="#e6007e"
+        app:hintTextColor="#e6007e"
+        app:startIconDrawable="@drawable/ic_badge"
+        app:startIconTint="#e6007e">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/fullNameEditText"
             android:layout_width="match_parent"
@@ -44,7 +50,11 @@
         app:layout_constraintTop_toBottomOf="@id/fullNameInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        app:boxStrokeColor="#e6007e"
+        app:hintTextColor="#e6007e"
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="#e6007e">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
@@ -61,7 +71,11 @@
         app:layout_constraintTop_toBottomOf="@id/emailInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        app:boxStrokeColor="#e6007e"
+        app:hintTextColor="#e6007e"
+        app:startIconDrawable="@drawable/ic_account_circle"
+        app:startIconTint="#e6007e">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/usernameEditText"
             android:layout_width="match_parent"
@@ -78,7 +92,12 @@
         app:layout_constraintTop_toBottomOf="@id/usernameInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        app:boxStrokeColor="#e6007e"
+        app:hintTextColor="#e6007e"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="#e6007e"
+        app:passwordToggleTint="#e6007e">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
@@ -91,10 +110,26 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Đăng ký"
+        android:backgroundTint="#e6007e"
+        android:textColor="#FFFFFF"
+        android:paddingVertical="14dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        android:padding="12dp"/>
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/loginPromptText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đã có tài khoản? Đăng nhập"
+        android:textColor="#e6007e"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

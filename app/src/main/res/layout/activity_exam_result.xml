@@ -1,39 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="16dp">
+    android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kết quả bài thi"
         android:textSize="28sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryTheme"/>
 
-    <TextView
-        android:id="@+id/scoreTextView"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Điểm số: 8/10"
-        android:textSize="22sp"
-        android:layout_marginTop="24dp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
 
-    <TextView
-        android:id="@+id/percentageTextView"
+        <TextView
+            android:id="@+id/scoreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8/10"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryTheme"
+            android:textSize="22sp"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tỷ lệ: 80%"
-        android:textSize="22sp"
-        android:layout_marginTop="8dp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/percentageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="80%"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryTheme"
+            android:textSize="22sp"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/backToCourseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:text="Quay về khóa học"
+        android:backgroundTint="@color/colorPrimaryTheme"
         android:layout_marginTop="32dp"/>
 
 </LinearLayout>

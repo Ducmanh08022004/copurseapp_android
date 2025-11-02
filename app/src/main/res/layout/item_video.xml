@@ -9,10 +9,10 @@
     android:background="?attr/selectableItemBackground">
 
     <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        app:tint="?attr/colorPrimary"
-        android:contentDescription="Play Icon"/>
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:srcCompat="@drawable/ic_video"
+        app:tint="@color/colorPrimaryTheme"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:text="10:30"
             android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="4dp"
+            />
     </LinearLayout>
 
 </LinearLayout>

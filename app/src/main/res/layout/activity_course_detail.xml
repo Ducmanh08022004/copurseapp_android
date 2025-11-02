@@ -3,32 +3,44 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"> <com.google.android.material.appbar.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"> <com.google.android.material.appbar.CollapsingToolbarLayout
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+    android:fitsSystemWindows="true"
 
-    <com.google.android.material.appbar.AppBarLayout
+    app:contentScrim="@color/colorPrimaryTheme"
+
+    app:collapsedTitleTextColor="@color/colorOnPrimary_White"
+
+    app:expandedTitleTextColor="@color/colorOnPrimary_White">
+
+    <ImageView
+        android:id="@+id/detailCourseImageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:fitsSystemWindows="true"
+        app:layout_collapseMode="parallax"/>
 
-            <ImageView
-                android:id="@+id/detailCourseImageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorImageScrim"
+        android:fitsSystemWindows="true"/>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"/>
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/> </com.google.android.material.appbar.CollapsingToolbarLayout>
+</com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -47,22 +59,24 @@
                 android:layout_height="wrap_content"
                 android:text="Tiêu đề khóa học"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryTheme"/>
 
             <TextView
                 android:id="@+id/detailCourseDescriptionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mô tả chi tiết về khóa học."
-                android:layout_marginTop="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nội dung bài giảng"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="24dp"/>
+                android:layout_marginTop="8dp"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="?android:attr/textColorSecondary"/> <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nội dung bài giảng"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/colorPrimaryTheme"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/videosRecyclerView"
@@ -77,7 +91,8 @@
                 android:text="Danh sách bài thi"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="24dp"/>
+                android:layout_marginTop="24dp"
+                android:textColor="@color/colorPrimaryTheme"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/examsRecyclerView"
@@ -85,6 +100,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:nestedScrollingEnabled="false"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
 
         </LinearLayout>
 
@@ -96,7 +115,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:text="Đăng ký học / Thanh toán">
+        android:text="Đăng ký học"
+        android:backgroundTint="@color/colorPrimaryTheme"
+        android:textColor="@color/colorOnPrimary_White">
     </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
