@@ -97,7 +97,7 @@
         android:id="@+id/registerPromptText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chưa có tài khoản? Đăng ký ngay"
+        android:text="@string/register_prompt_text"
         android:textColor="#e6007e"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

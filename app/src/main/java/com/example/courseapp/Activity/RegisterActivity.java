@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.registerButton);
 
         registerButton.setOnClickListener(v -> handleRegister());
+        TextView loginPromptText = findViewById(R.id.loginPromptText);
+        loginPromptText.setOnClickListener(v -> finish());
+
     }
 
     private void handleRegister() {
